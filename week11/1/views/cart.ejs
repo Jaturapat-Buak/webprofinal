@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% let total = 0; %>
+    <nav><a href = "/"><button>menu</button></a></nav>
+    <nav><a href = "/cart"><button>cart</button></a></nav>
+    <h1>Your Cart</h1>
+
+    <% data.forEach(item => { %>
+        <div>
+            <img src="<%= item.image %>" width="100"><br>
+            <strong><%= item.name %></strong><br>
+            <%= item.price %> THB
+            <% total += item.price; %>
+        </div>
+    <% }) %>
+    
+    <h2>Total: <%= total %> THB</h2>
+    
+    <a href = "/clear-cart">
+        <button>Confirm Order</button>
+    </a>
+</body>
+</html>

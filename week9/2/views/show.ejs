@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% data.forEach(item => { %>
+        <p><%= item.QID %>. <%= item.Stem %></p>
+        <div>
+            <input type = "radio"><label><%= item.Alt_A %></label>
+        </div>
+        <div>
+            <input type = "radio"><label><%= item.Alt_B %></label>
+        </div>
+        <div>
+            <input type = "radio"><label><%= item.Alt_C %></label>
+        </div>
+        <div>
+            <input type = "radio"><label><%= item.Alt_D %></label>
+        </div>
+    <% }) %>
+</body>
+</html>

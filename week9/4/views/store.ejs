@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href = "../style/style.css" rel = "stylesheet">
+    <title>Document</title>
+</head>
+<body style = "padding: 20px;">
+    <h1>ระบบติดตามสถานะคำสั่งซื้อ</h1>
+    <div id = "body">
+        <div id = "add-info">
+            <form method="POST" action = "/add">
+                <input name = "name" placeholder = "ชื่อ"> <input name = "product" placeholder = "สินค้า"> <input name = "address" placeholder = "ที่อยู่"> <input name = "tel" placeholder = "เบอร์โทร"> <button class = "btn btn-success">เพิ่ม</button>
+            </form>
+        </div>
+        <br>
+        <div id = "table-info">
+            <table class = "table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>ลูกค้า</th>
+                    <th>สินค้า</th>
+                    <th>สถานะ</th>
+                    <th>จัดการ</th>
+                </tr>
+                <% data.forEach((item) => { %>
+                <tr>
+                        <td><%= item.id %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.product %></td>
+                        <td>
+                            <% if (item.status === "กำลังจัดส่ง") { %>
+                                <span>กำลังจัดส่ง</span>
+                            <% } else if (item.status === "จัดส่งแล้ว") { %>
+                                <span>จัดส่งแล้ว</span>
+                            <% } else { %>
+                                <span>รอดำเนินการ</span>
+                            <% } %>
+                        </td>
+                        <td class = "d-flex gap-2">
+                            <form method="POST" action = "/update/<%= item.id %>">
+                                <select name = "status">
+                                    <option value = "รอดำเนินการ">รอดำเนินการ</option>
+                                    <option value = "กำลังจัดส่ง">กำลังจัดส่ง</option>
+                                    <option value = "จัดส่งแล้ว">จัดส่งแล้ว</option> 
+                                </select>
+                                <button class = "btn btn-warning">เปลี่ยน</button>
+                            </form>
+                            <a href = "/edit/<%= item.id %>">
+                                <button class = "btn btn-primary">แก้ไข</button>
+                            </a>
+                            <form method="POST" action = "/delete/<%= item.id %>">
+                                <button class = "btn btn-danger">ลบ</button>
+                            </form>
+                        </td>
+                </tr>
+                <% }) %>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

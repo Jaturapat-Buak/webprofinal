@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ระบบติดตามคำสั่งซื้อ</h1>
+    <form method="POST" action = "/add">
+        <input type = "text" name = "name" placeholder="customer name...">
+        <input type = "text" name = "product" placeholder="product name...">
+        <input type = "text" name = "address" placeholder="address..."><br>
+        <input type = "text" name = "tel" placeholder="tel..."> <button>add</button>
+    </form>
+    <h2>รายการคำสั่งซื้อ</h2>
+    <table>
+        <tr>
+            <th>ID</th><th>Customer</th><th>Product</th><th>State</th><th>Action</th>
+        </tr>
+        <% data.forEach((item) => { %>
+        <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.product %></td>
+            <td><%= item.state %></td>
+            <td>
+                <form method="POST" action = "/update/<%= item.id %>">
+                    <select name = "state">
+                        <option value="done">done</option>
+                        <option value="ongoing">ongoing</option>
+                        <option value="nostart">nostart</option>
+                    </select>
+                    <button>update</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "navbar">
+        <nav><a href = "/"><button>menu</button></a></nav>
+        <nav><a href = "/cart"><button>cart</button></a></nav>
+    </div>
+    <h1>AUNTIE-AUN Restaurant</h1>
+    <% data.forEach((item) => { %>
+        <div class = "">
+            <form method="POST" action="/addtocookie/<%= item.id %>">
+                <img src = "<%= item.image %>"><br>
+                <a><strong><%= item.name %></strong></a><br>
+                <a><%= item.description %></a><br>
+                <a><%= item.price %> THB</a><button>Add to cart</button>
+            </form>
+        </div>
+    <% }) %>
+</body>
+</html>

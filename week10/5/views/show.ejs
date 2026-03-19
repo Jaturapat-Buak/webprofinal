@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TODOLIST</h1>
+    <a href = "/add"><button>add</button></a>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>deadline</th>
+            <th>state</th>
+        </tr>
+        <% data.forEach((item) => { %>
+        <tr>
+        
+            <td><%= item.id %></td>
+            <td><%= item.title %></td>
+            <td><%= item.deadline %></td>
+            <td><form method="POST" action = "/update/<%= item.id %>">
+                <%= item.state %>
+                <input type = "checkbox" name = "state" value = "yes" onchange="this.form.submit()" <%= item.state === 'yes' ? 'checked' : '' %>>
+            </form></td>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
